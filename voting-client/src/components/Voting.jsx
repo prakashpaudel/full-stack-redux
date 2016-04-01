@@ -6,6 +6,7 @@ export default React.createClass({
   },
   render: function() {
     return <div className="voting">
+    	hell
       {this.getPair().map(entry =>
         <button key={entry}>
           <h1>{entry}</h1>
