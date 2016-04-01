@@ -1,20 +1,24 @@
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack')
+
+var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: __dirname + '/src/index.html',
+  filename: 'index.html',
+  inject: 'body'
+});
 
 module.exports = {
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:8080',
     'webpack/hot/only-dev-server',
-    './src/index.jsx'
+    './src/index.js'
   ],
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.js?$/,
       exclude: /node_modules/,
       loader: 'react-hot!babel'
     }]
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
   },
   output: {
     path: __dirname + '/dist',
@@ -26,6 +30,7 @@ module.exports = {
     hot: true
   },
   plugins: [
+    HTMLWebpackPluginConfig,
     new webpack.HotModuleReplacementPlugin()
   ]
 }
