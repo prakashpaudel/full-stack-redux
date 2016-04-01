@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "c9": "webpack-dev-server --port $PORT --host $IP" ,
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch"
   },
   "keywords": [],
@@ -18,7 +17,6 @@
     "babel-preset-react": "^6.5.0",
     "chai": "^3.5.0",
     "chai-immutable": "^1.5.4",
-    "html-webpack-plugin": "^2.15.0",
     "jsdom": "^8.2.0",
     "mocha": "^2.4.5",
     "react-hot-loader": "^1.3.0",
