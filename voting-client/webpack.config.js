@@ -14,19 +14,15 @@ module.exports = {
     './src/index.js'
   ],
   module: {
-    loaders: [{
-      test: /\.js?$/,
-      exclude: /node_modules/,
-      loader: 'react-hot!babel'
-    }]
+    loaders: [
+       {test: /\.js$/, exclude: /node_modules/, loaders: ["react-hot", "babel-loader"]}
+    ]
   },
   output: {
     path: __dirname + '/dist',
-    publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './dist',
     hot: true
   },
   plugins: [
