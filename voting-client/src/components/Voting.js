@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import Winner from './Winner';
+import Vote from './Vote';
+import * as actionCreators from '../action_creators';
 
-export default React.createClass({
-  getPair: function() {
-    return this.props.pair || [];
-  },
-  render: function() {
-    return <div className="voting">
-      {this.getPair().map(entry =>
-        <button key={entry}>
-          <h1>{entry}</h1>
-        </button>
-      )}
-    </div>;
-  }
-});
+export class Voting extends Component {
+	render() {
+		return (
+			<div>
+		    {this.props.winner ?
+		      <Winner ref="winner" winner={this.props.winner} /> :
+		      <Vote {...this.props} />}
+		  </div>
+	 )
+	}
+}
+
+function mapStateToProps(state) {
+	return{
+		pair: state.getIn(['vote', 'pair']),
+		hasVoted: state.get('hasVoted'),
+		winner: state.get('winner')
+	}
+}
+
+export const VotingContainer = connect(
+	mapStateToProps,
+	actionCreators
+)(Voting)
